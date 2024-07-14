@@ -42,6 +42,7 @@
 		4FD8AF9C2C427FCC003E7DF9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4FD8AF9E2C4294DA003E7DF9 /* NSEventEventType+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEventEventType+.swift"; sourceTree = "<group>"; };
 		4FD8AFA02C4295C1003E7DF9 /* NSEventEventTypeMask+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSEventEventTypeMask+.swift"; sourceTree = "<group>"; };
+		4FD8AFA22C4366B7003E7DF9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 				4F7955FC2C4250AE00A8C02C /* Assets.xcassets */,
 				4F7955FE2C4250AE00A8C02C /* Main.storyboard */,
 				4F7956012C4250AE00A8C02C /* UserEventDisplay.entitlements */,
+				4FD8AFA22C4366B7003E7DF9 /* README.md */,
 			);
 			path = UserEventDisplay;
 			sourceTree = "<group>";
