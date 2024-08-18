@@ -4,6 +4,7 @@ extension UserDefaults {
     enum Keys {
         static let fontScale = "fontScale"
         static let monitorEvents = "monitorEvents"
+        static let isVisibilityOn = "isVisibilityOn"
     }
 
     var fontScale: CGFloat {
@@ -29,6 +30,19 @@ extension UserDefaults {
         }
         set {
             set(newValue, forKey: Keys.monitorEvents)
+        }
+    }
+
+    var isVisibilityOn: Bool {
+        get {
+            if object(forKey: Keys.isVisibilityOn) == nil {
+                return true
+            } else {
+                return bool(forKey: Keys.isVisibilityOn)
+            }
+        }
+        set {
+            set(newValue, forKey: Keys.isVisibilityOn)
         }
     }
 }

@@ -45,7 +45,8 @@ class EventDisplayWindow: NSWindow {
                 size: CGSize(width: initialWidth, height: initialHeight),
                 presenter: EventDisplayPresenter(),
                 eventPublisher: eventPublisher.eraseToAnyPublisher(),
-                fontScalePublisher: preferenceStore.fontScale.publisher
+                fontScalePublisher: preferenceStore.fontScale.publisher,
+                isVisibilityOnPublisher: preferenceStore.isVisibilityOn.publisher
             )
         )
         backgroundColor = .clear

@@ -10,6 +10,7 @@ struct PreferenceView: View {
 
     @State private var fontScale: CGFloat
     @State private var monitorEvents: UInt64
+    @State private var isVisibilityOn: Bool
 
     init(size: CGSize, preferenceStore: PreferenceStore, userDefaults: UserDefaults) {
         self.size = size
@@ -17,10 +18,26 @@ struct PreferenceView: View {
         self.userDefaults = userDefaults
         self.fontScale = preferenceStore.fontScale.value
         self.monitorEvents = preferenceStore.monitorEvents.value
+        self.isVisibilityOn = preferenceStore.isVisibilityOn.value
     }
 
     var body: some View {
         List {
+            Section {
+                Toggle(
+                    isOn: $isVisibilityOn,
+                    label: {
+                        Text("Visibility")
+                            .font(.body)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                )
+                .toggleStyle(.checkbox)
+            } header: {
+                Text("Visibility")
+                    .font(.title)
+            }
+            .listRowSeparator(.hidden)
             Section {
                 Slider(
                     value: $fontScale,
@@ -69,9 +86,13 @@ struct PreferenceView: View {
         }
         .listStyle(.automatic)
         .frame(minWidth: size.width, minHeight: size.height)
-        .onChange(of: fontScale, initial: false) { oldValue, newValue in
+        .onChange(of: fontScale, initial: false) { _, newValue in
             preferenceStore.fontScale.set(newValue)
             userDefaults.fontScale = newValue
+        }
+        .onChange(of: isVisibilityOn, initial: false) { _, newValue in
+            preferenceStore.isVisibilityOn.set(newValue)
+            userDefaults.isVisibilityOn = newValue
         }
     }
 }

@@ -12,11 +12,13 @@ struct EventDisplayView: View {
     let presenter: EventDisplayPresenter
     let eventPublisher: AnyPublisher<NSEvent, Never>
     let fontScalePublisher: AnyPublisher<CGFloat, Never>
+    let isVisibilityOnPublisher: AnyPublisher<Bool, Never>
 
     private let bufferingEventCount = 50
 
     @State private var listData: [EventViewData] = []
     @State private var fontScale: CGFloat = 1.0
+    @State private var isVisibilityOn = true
 
     var body: some View {
         VStack {
@@ -53,6 +55,7 @@ struct EventDisplayView: View {
         .foregroundStyle(Color.white)
         .background(Color.clear)
         .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 5)
+        .opacity(isVisibilityOn ? 1 : 0)
         .onReceive(eventPublisher) { event in
             let eventData = presenter.generateEventViewData(event: event)
             if listData.count == bufferingEventCount {
@@ -76,6 +79,9 @@ struct EventDisplayView: View {
         })
         .onReceive(fontScalePublisher, perform: { fontScale in
             self.fontScale = fontScale
+        })
+        .onReceive(isVisibilityOnPublisher, perform: { isVisibilityOn in
+            self.isVisibilityOn = isVisibilityOn
         })
     }
 }
